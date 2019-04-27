@@ -18,4 +18,19 @@ public class JewelStonesTest {
         assertEquals(0, JewelStones.numJewelsInStones("z","ZZ"));
     }
 
+    @Test
+    public void testEmptyJewels() {
+        assertEquals(0, JewelStones.numJewelsInStones("","ZZ"));
+    }
+
+    @Test
+    public void testNullStones() {
+        assertEquals(0, JewelStones.numJewelsInStones("aEw",null));
+    }
+
+    @Test
+    public void testNullJewels() {
+        assertEquals(0, JewelStones.numJewelsInStones(null,"ZZ"));
+    }
+
 }
