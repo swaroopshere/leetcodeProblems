@@ -35,18 +35,6 @@ public class DirectedGraph {
         public void setFinishingTime(Integer finishingTime) { this.finishingTime = finishingTime;}
         public void setLeader(Integer leader) {this.leader = leader;}
         public void setAdjacencyList(List<Integer> adjacencyList) {this.adjacencyList = adjacencyList;}
-
-        /*@Override
-        public boolean equals(Object node) {
-            if(node instanceof Value) {
-                if (this.label.equals(((Value) node).label)) {
-                    return true;
-                } else return false;
-            } else return false;
-        }
-
-        @Override
-        public int hashCode() {return this.label;}*/
     }
 
     public DirectedGraph() {
