@@ -1,28 +1,71 @@
-package org.home.sshere.algorithmsclass;
+package org.algorithmsclass;
 
+import com.google.inject.internal.util.Lists;
 import com.google.inject.internal.util.Maps;
-
-import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
 public class DirectedGraph {
-    private Map<BigInteger, List<BigInteger>> adjacencyList;
+    public Map<Integer, Value> graph;
+    public Map<Integer, Boolean> isExplored;
+
+    public static class Value {
+        private Integer finishingTime;
+        private Integer leader;
+        List<Integer> adjacencyList;
+
+
+        public Value() {
+            this.adjacencyList = Lists.newArrayList();
+            this.finishingTime = null;
+            this.leader = null;
+        }
+
+        public Value(List<Integer> adjacencyList) {
+            this.adjacencyList = adjacencyList;
+            this.finishingTime = null;
+            this.leader = null;
+        }
+        /* getter methods */
+        public Integer getFinishingTime() {return this.finishingTime;}
+        public Integer getLeader() {return this.leader;}
+        public List<Integer> getAdjacencyList() {return this.adjacencyList;}
+
+        /* setter methods */
+        public void setFinishingTime(Integer finishingTime) { this.finishingTime = finishingTime;}
+        public void setLeader(Integer leader) {this.leader = leader;}
+        public void setAdjacencyList(List<Integer> adjacencyList) {this.adjacencyList = adjacencyList;}
+
+        /*@Override
+        public boolean equals(Object node) {
+            if(node instanceof Value) {
+                if (this.label.equals(((Value) node).label)) {
+                    return true;
+                } else return false;
+            } else return false;
+        }
+
+        @Override
+        public int hashCode() {return this.label;}*/
+    }
 
     public DirectedGraph() {
-        adjacencyList = Maps.newHashMap();
+        graph = Maps.newHashMap();
+        isExplored = Maps.newHashMap();
     }
 
-    public DirectedGraph(Map<BigInteger, List<BigInteger>> adjacencyList) {
-        this.adjacencyList = adjacencyList;
-    }
-
-    public void addEdge(BigInteger fromVertex, BigInteger toVertex) {
-        if(adjacencyList.containsKey(fromVertex)) {
-            adjacencyList.get(fromVertex).stream()
+    public void addEdge(Integer fromVertex, Integer toVertex) {
+        Value toVertexList;
+        if(graph.containsKey(fromVertex)) {
+            toVertexList = graph.get(fromVertex);
+            toVertexList.adjacencyList.add(toVertex);
+        } else {
+            toVertexList = new Value(Lists.newArrayList(toVertex));
+            graph.put(fromVertex, toVertexList);
         }
     }
-    public Map<BigInteger, List<BigInteger>> getAdjacencyList() {
-        return this.adjacencyList;
+
+    public Map<Integer, Value> getAdjacencyList() {
+        return this.graph;
     }
 }
