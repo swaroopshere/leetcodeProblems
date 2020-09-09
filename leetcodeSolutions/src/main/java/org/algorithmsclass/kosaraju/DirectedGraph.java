@@ -1,4 +1,4 @@
-package org.algorithmsclass;
+package org.algorithmsclass.kosaraju;
 
 import com.google.inject.internal.util.Lists;
 import com.google.inject.internal.util.Maps;
