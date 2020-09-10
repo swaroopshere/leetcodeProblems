@@ -1,5 +1,6 @@
 package org.algorithmsclass;
 
+import org.algorithmsclass.greedy.PrimsAlgorithm;
 import org.algorithmsclass.greedy.SchedulingProblemExercises;
 import org.algorithmsclass.kosaraju.KosarajuAlgorithm;
 import org.junit.jupiter.api.Test;
@@ -17,4 +18,10 @@ public class KosarajuTest {
     public void testSchedulingProblemOne() throws IOException, URISyntaxException {
         new SchedulingProblemExercises().getOptimizedValue();
     }
+
+    @Test
+    public void testPrims() throws IOException {
+        new PrimsAlgorithm().buildMST();
+    }
+
 }
