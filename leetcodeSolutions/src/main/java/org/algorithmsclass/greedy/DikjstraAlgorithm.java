@@ -16,9 +16,7 @@ public class DikjstraAlgorithm {
     private Map<Integer, Integer> costMap;
     private static Integer MAX_DISTANCE = 1000000;
     private static Integer NUM_NODES = 200;
-    private int vertexCount;
-    private int edgeCount;
-    private static class Edge  implements Comparable<Edge>{
+    private static class Edge implements Comparable<Edge>{
         private int fromVertex;
         private int toVertex;
         private int cost;
@@ -29,14 +27,9 @@ public class DikjstraAlgorithm {
             this.cost = cost;
             this.intermediateCost = 0;
         }
-        public int getFromVertex() {return this.fromVertex;}
-        public int getToVertex() {return this.toVertex;}
-        public int getCost() {return this.cost;}
-
-
         @Override
         public int compareTo(Edge edge) {
-            return Integer.compare(this.cost, edge.cost);
+            return Integer.compare(this.intermediateCost, edge.intermediateCost);
         }
     }
 
@@ -62,17 +55,7 @@ public class DikjstraAlgorithm {
             coveredVertices.add(minCostEdge.toVertex);
             uncoveredVertices.remove(minCostEdge.toVertex);
         }
-        //costMap.entrySet().forEach(value -> System.out.println(value.getKey() + " : " + value.getValue()));
-
         System.out.println(costMap.get(7) + "," + costMap.get(37) + "," + costMap.get(59) + "," + costMap.get(82) + "," + costMap.get(99) + "," + costMap.get(115) + "," + costMap.get(133) + "," + costMap.get(165) + "," + costMap.get(188) + "," + costMap.get(197));
-    }
-
-    public static class CostComparator implements Comparator<Edge> {
-
-        @Override
-        public int compare(Edge edge, Edge t1) {
-            return Integer.compare(edge.intermediateCost, t1.intermediateCost);
-        }
     }
 
     private Edge getMinimumCostEdge(Set<Integer> coveredVertices, Set<Integer> uncoveredVertices) {
@@ -80,8 +63,10 @@ public class DikjstraAlgorithm {
         List<Edge> allOutgoingEdges = Lists.newArrayList();
         coveredVertices.forEach(fromVertex -> {
             List<Edge> edgesPerVertex = adjacencyList.get(fromVertex).stream().filter(edge -> uncoveredVertices.contains(edge.toVertex)).collect(Collectors.toList());
+            //calculate intermediate costs for each
             edgesPerVertex.forEach(edge -> {
                 int intermediateCost = costMap.get(edge.fromVertex) + edge.cost;
+                //update costMap
                 if(intermediateCost < costMap.get(edge.toVertex)) {
                     costMap.replace(edge.toVertex, intermediateCost);
                 }
@@ -89,7 +74,8 @@ public class DikjstraAlgorithm {
             });
             allOutgoingEdges.addAll(edgesPerVertex);
         });
-        Collections.sort(allOutgoingEdges, new CostComparator());
+        //get edge with least cost
+        Collections.sort(allOutgoingEdges);
         return allOutgoingEdges.get(0);
     }
 
@@ -115,7 +101,6 @@ public class DikjstraAlgorithm {
                 } else {
                     fromVertex = Integer.parseInt(token);
                 }
-
             }
         });
         return adjList;
