@@ -1,5 +1,7 @@
 package org.home.sshere.leetcode;
 
+import org.algorithmsclass.divideConquer.CountInversions;
+import org.algorithmsclass.divideConquer.QuickSort;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 public class PrimsAlgorithm {
     private Map<Integer, List<Edge>> adjacencyList;
     private int vertexCount;
+    private int edgeCount;
     private static class Edge {
         private int fromVertex;
         private int toVertex;
@@ -32,6 +33,10 @@ public class PrimsAlgorithm {
     public PrimsAlgorithm() throws IOException {
         this.adjacencyList = buildAdjacencyList();
         this.heap = new PriorityQueue<>(vertexCount, new EdgeCostComparator());
+    }
+
+    public void calculate() {
+        //sort edges
     }
 
     public static class EdgeCostComparator implements Comparator<Edge> {
@@ -60,13 +65,11 @@ public class PrimsAlgorithm {
                 }
             });
             Edge minCostNode = heap.poll();
-
             if(exploredVertices.get(minCostNode.getToVertex()) != null) {
                 //remove
                 unexploredVertices.remove(minCostNode.getToVertex());
             } else {
                 //add to explored node, remove from (V-X)
-                int fromVertex = minCostNode.getFromVertex();
                 int toVertex = minCostNode.getToVertex();
                 exploredVertices.put(toVertex, true);
                 unexploredVertices.remove(toVertex);
@@ -92,6 +95,7 @@ public class PrimsAlgorithm {
             while(tokenizer.hasMoreElements()) {
                 if (tokenizer.countTokens() == 2) {
                     vertexCount = Integer.parseInt(tokenizer.nextToken());
+                    edgeCount = Integer.parseInt(tokenizer.nextToken());
                 } else {
                     int fromVertex = Integer.parseInt(tokenizer.nextToken());
                     int toVertex = Integer.parseInt(tokenizer.nextToken());
