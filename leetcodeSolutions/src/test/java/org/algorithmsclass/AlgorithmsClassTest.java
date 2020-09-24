@@ -1,5 +1,6 @@
 package org.algorithmsclass;
 
+import org.algorithmsclass.ds.MedianMaintenance;
 import org.algorithmsclass.greedy.DikjstraAlgorithm;
 import org.algorithmsclass.greedy.KruskalsAlgorithm;
 import org.algorithmsclass.greedy.PrimsAlgorithm;
@@ -36,4 +37,8 @@ public class AlgorithmsClassTest {
         new DikjstraAlgorithm().calculate();
     }
 
+    @Test
+    public void testMedianMaintenance() throws IOException {
+        new MedianMaintenance().generateMedianList();
+    }
 }

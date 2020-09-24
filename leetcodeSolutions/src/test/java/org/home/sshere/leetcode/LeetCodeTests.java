@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -125,4 +128,44 @@ public class LeetCodeTests {
         int[] array7 = new int[] {4,1,3,6,2};
         assertEquals(2, QuickSort.choosePivotPosition(array7,0,4));
     }
+
+    @Test
+    public void testRobotBounded() {
+        //assertTrue(RobotDirections.isRobotBounded("GGLLGG"));
+        assertTrue(RobotDirections.isRobotBounded("LRRRRLLLRL"));
+    }
+
+    @Test
+    public void testStockPrice() {
+        int[] prices = new int[]{7,1,5,3,6,4};
+        assertEquals(5,new StockPrice().maxProfit(prices));
+    }
+
+    @Test
+    public void testSequentialDigits() {
+        List<Integer> sequence = new SequentialDigits().sequentialDigits(178546104,812704742);
+        assertEquals(List.of(), sequence);
+    }
+
+    @Test
+    public void testCircularLL() {
+        CircularLinkedList.Node node1 = new CircularLinkedList.Node(3);
+        CircularLinkedList.Node node2 = new CircularLinkedList.Node(5);
+        CircularLinkedList.Node node3 = new CircularLinkedList.Node(1);
+
+        node1.next = node2;
+        node2.next = node3;
+        node3.next = node1;
+        CircularLinkedList.Node head = new CircularLinkedList().insert(node1, 0);
+        assertNotNull(head);
+    }
+
+    @Test
+    public void testGasStation(){
+        int[] gas = new int[] {1,2,3,4,5};
+        int[] cost = new int[] {3,4,5,1,2};
+        assertEquals(3, new CarTravel().canCompleteCircuit(gas, cost));
+        assertEquals(-1, new CarTravel().canCompleteCircuit(new int[]{3,3,4}, new int[]{3,4,4}));
+    }
+
 }
