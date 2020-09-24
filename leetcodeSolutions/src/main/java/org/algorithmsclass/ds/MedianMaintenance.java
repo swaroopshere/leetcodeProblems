@@ -43,17 +43,11 @@ public class MedianMaintenance {
 
     private int calculateMedian() {
         PriorityQueue<Integer> bigger = (lowers.size() >= highers.size()) ? lowers : highers;
-        //PriorityQueue<Integer> smaller = (lowers.size() < highers.size()) ? lowers : highers;
-        //if sizes are equal, get average, else get larger
         if(lowers.size() == highers.size()) {
-            //int num1 = bigger.peek();
-            //int num2 = smaller.peek();
             return lowers.peek();
-            //return ((double)(bigger.peek() + smaller.peek())/2);
         } else {
             return bigger.peek();
         }
-        //return lowers.peek();
     }
 
     private void rebalanceHeaps() {
