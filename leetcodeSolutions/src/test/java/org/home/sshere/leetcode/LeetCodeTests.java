@@ -168,4 +168,9 @@ public class LeetCodeTests {
         assertEquals(-1, new CarTravel().canCompleteCircuit(new int[]{3,3,4}, new int[]{3,4,4}));
     }
 
+    @Test
+    public void testStringToNumber() {
+        assertEquals(-42,new StringToNumber().myAtoi("    -42"));
+    }
+
 }
